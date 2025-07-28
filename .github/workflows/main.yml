@@ -10,4 +10,8 @@ jobs:
 
     steps:
         - name: hello
-          run: echo sandip devops
+          run: sudo apt update -y
+  
+        - name: nginx install on ubuntu
+          run: sudo apt install nginx -y
+        
