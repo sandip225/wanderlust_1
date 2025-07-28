@@ -2,7 +2,7 @@ name: Git repo clone
 
 on: 
   push:
-    branches: [main]
+    branches: [ "main" ]
 
 jobs:
   test:
