@@ -1,0 +1,19 @@
+name: Git repo clone
+
+on: 
+  push:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubutnu-latest
+
+    steps:
+      - name: clone repo
+        run: git clone https://github.com/sandip225/wanderlust_1.git
+
+      - name: change directery
+        run: cd wanderlust_1/frontend
+
+      - name: run
+        run: npm i
