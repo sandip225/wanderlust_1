@@ -9,11 +9,5 @@ jobs:
     runs-on: self-hosted
 
     steps:
-      - name: clone repo
-        run: git clone https://github.com/sandip225/wanderlust_1.git
-
-      - name: change directery
-        run: cd _work/wanderlust_1/wanderlust_1/wanderlust_1/frontend
-
-      - name: run
-        run: npm i
+        - name: hello
+          run: echo sandip devops
