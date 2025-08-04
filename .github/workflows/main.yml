@@ -1,17 +1,28 @@
-name: Git repo clone
+name: wanderlust_1
 
 on: 
   push:
     branches: [ "main" ]
 
 jobs:
-  test:
+  build:
     runs-on: self-hosted
 
     steps:
-        - name: hello
-          run: sudo apt update -y
-  
-        - name: nginx install on ubuntu
-          run: sudo apt install nginx -y
+        - name: git repo clone
+          run: git clone https://github.com/sandip225/wanderlust_1.git
+
+        - name: docker install
+          run: |
+              sudo apt update -y
+              sudo apt install docker.io -y
+              sudo apt install docker-compose -y
+              sudo usermod -aG docker $USER
+              sudo newgrp docker
+
+        - name: go in files
+          run: cd wanderlust_1
+
+        - name: run docker-compose file
+          run: docker-compose up -d --build
         
