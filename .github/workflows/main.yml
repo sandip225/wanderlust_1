@@ -22,7 +22,7 @@ jobs:
               sudo newgrp docker
 
         - name: go in files
-          run: cd _work/wanderlust_1/wanderlust_1
+          run: cd wanderlust_1
 
         - name: run docker-compose file
           run: sudo docker-compose up -f docker-compose.yml -d --build
