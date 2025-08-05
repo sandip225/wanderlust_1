@@ -24,5 +24,5 @@ jobs:
           run: cd wanderlust_1
 
         - name: run docker-compose file
-          run: docker-compose up -d --build
+          run: sudo docker-compose up -f docker-compose.yml -d --build
         
