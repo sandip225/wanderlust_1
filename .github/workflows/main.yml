@@ -23,6 +23,8 @@ jobs:
 
         - name: go in files
           run: cd wanderlust_1
+        - name: delete present files
+          run: sudo docker-compose down
 
         - name: run docker-compose file in ubuntu
           run: sudo docker-compose -f docker-compose.yml up -d --build
