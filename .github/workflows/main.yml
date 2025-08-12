@@ -21,7 +21,7 @@ jobs:
         run: sudo docker cp ./backend/data/sample_posts.json mongo:/data/sample_posts.json
 
       - name: Import data into Mongo container
-        run: sudo docker exec mongo mongoimport --db wanderlust --collection posts --file /data/sample_posts.json/sample_posts.json --jsonArray
+        run: sudo docker exec mongo mongoimport --db wanderlust --collection posts --file /data/sample_posts.json --jsonArray
 
                
 
