@@ -7,29 +7,22 @@ on:
 jobs:
   build:
     runs-on: self-hosted
-
     steps:
-        - uses: actions/checkout@v4
-        - name: git repo clone
-          run: git clone https://github.com/sandip225/wanderlust_1.git
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-        - name: docker install
-          run: |
-              sudo apt update -y
-              sudo apt install docker.io -y
-              sudo apt install docker-compose -y
-              sudo usermod -aG docker $USER
-              sudo newgrp docker
+      - name: Debug - list files
+        run: ls -la ./data
 
-        - name: go in files
-          run: cd wanderlust_1
-        - name: delete present files
-          run: sudo docker-compose down
+      - name: Build and run docker-compose
+        run: sudo docker-compose -f docker-compose.yml up -d --build
 
-        - name: run docker-compose file in ubuntu
-          run: |
-                sudo docker-compose -f docker-compose.yml up -d --build
-                sudo docker cp ./backend/data mongo:/tmp/sample_posts.json
-                sudo docker exec mongo mongoimport --db wanderlust --collection posts --file /tmp/sample_posts.json --jsonArray
+      - name: Copy mongo data json to container
+        run: sudo docker cp ./data/sample_posts.json mongo:/tmp/sample_posts.json
+
+      - name: Import data into Mongo container
+        run: sudo docker exec mongo mongoimport --db wanderlust --collection posts --file /tmp/sample_posts.json --jsonArray
+
+               
 
         
