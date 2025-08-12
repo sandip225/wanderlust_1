@@ -29,7 +29,7 @@ jobs:
         - name: run docker-compose file in ubuntu
           run: |
                 sudo docker-compose -f docker-compose.yml up -d --build
-                sudo docker cp /actions-runner/_work/wanderlust_1/wanderlust_1/wanderlust_1/backend/data mongo:/tmp/sample_posts.json
+                sudo docker cp ./_work/wanderlust_1/wanderlust_1/wanderlust_1/backend/data mongo:/tmp/sample_posts.json
                 sudo docker exec mongo mongoimport --db wanderlust --collection posts --file /tmp/sample_posts.json --jsonArray
 
         
