@@ -27,9 +27,9 @@ jobs:
           run: sudo docker-compose down
 
         - name: run docker-compose file in ubuntu
-          run: sudo docker-compose -f docker-compose.yml up -d --build
-        - name: mongo data copy
-          run: sudo docker exec mongo bash 
-        - name: copy
-          run: mongoimport --db wanderlust --collection posts --file ./data/sample_posts.json --jsonArray
+          run: |
+                sudo docker-compose -f docker-compose.yml up -d --build
+                sudo docker cp ./data/sample_posts.json mongo:/tmp/sample_posts.json
+                sudo docker exec mongo mongoimport --db wanderlust --collection posts --file /tmp/sample_posts.json --jsonArray
+
         
